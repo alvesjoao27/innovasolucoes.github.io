@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="icon" href="favicon.ico" type="image/ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Innova Soluções</title>
+  <style>
+
+    {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --primary: #0098d8;          /* cor principal */
+      --primary-dark: #006ba0;     /* azul mais escuro para gradiente/hover */
+      --accent: #00c853;           /* verde apenas como apoio (WhatsApp etc.) */
+      --bg-light: #f5f7fb;
+      --text-main: #1f2933;
+      --text-muted: #6b7280;
+      --white: #ffffff;
+      --border-soft: #e5e7eb;
+      --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.12);
+      --radius-lg: 14px;
+      --radius-full: 999px;
+      --transition-fast: 0.25s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color: var(--text-main);
+      background: linear-gradient(180deg, #e5f4fc 0%, #f9fafb 40%, #f9fafb 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      background: #020617;
+      color: #e5e7eb;
+      font-size: 0.85rem;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .topbar-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.9;
+    }
+
+    .topbar-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #e5e7eb;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 20% 20%, #40bef2, var(--primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: 0 10px 25px rgba(0, 152, 216, 0.7);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo-text span:first-child {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 1.05rem;
+    }
+
+    .logo-text span:last-child {
+      font-size: 0.72rem;
+      color: #9ca3af;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: 0.95rem;
+      color: #e5e7eb;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 0.2rem 0;
+      opacity: 0.85;
+      transition: var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.15rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      transition: var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      gap: 0.35rem;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--white);
+      box-shadow: 0 10px 25px rgba(0, 152, 216, 0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 35px rgba(0, 152, 216, 0.7);
+      filter: brightness(1.03);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: #f9fafb;
+      background: rgba(15, 23, 42, 1);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #f0fdf4;
+      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.45);
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 35px rgba(34, 197, 94, 0.65);
+      filter: brightness(1.05);
+    }
+
+    .btn-instagram {
+      background: radial-gradient(circle at 30% 30%, #00b4ff, var(--primary-dark));
+      color: #fef9c3;
+      box-shadow: 0 10px 25px rgba(0, 152, 216, 0.5);
+    }
+
+    .btn-instagram:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 35px rgba(0, 152, 216, 0.7);
+      filter: brightness(1.04);
+    }
+
+    .btn-icon-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.15rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #e5e7eb;
+      font-size: 0.78rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+    }
+
+    .badge-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+    .image-slider {
+      width: 100%;
+      margin: 2.5rem auto;
+      padding: 0;
+      max-width: 1120px;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.25);
+    }
+
+    .slider-wrapper {
+      position: relative;
+      width: 100%;
+      height: 360px;
+      background: #000;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block; 
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.05);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .imagem-arredondada {
+      border-radius: 15px;  /* cantos médios */
+      max-width: 100%;
+      height: auto;
+    }
+
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      .slider-wrapper {
+        height: 220px;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.2rem;
+      align-items: center;
+    }
+
+    .hero-left {
+      position: relative;
+    }
+
+    .hero-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      color: #e5e7eb;
+      font-size: 0.8rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      margin-bottom: 0.9rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.65);
+    }
+
+    .hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 3vw + 1rem, 3.1rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      margin-bottom: 0.75rem;
+      color: #020617;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 32rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-bullets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-bullet {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      border: 1px dashed #c5e6f7;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.8rem;
+      color: #1e293b;
+    }
+
+    .hero-bullet-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #dbeafe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--primary-dark);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    /* SECTION WRAPPER */
+    section {
+      padding: 2.8rem 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.9rem;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #020617;
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #4b5563;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 25rem;
+    }
+
+    /* METRICS SECTION */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .metric-card {
+      background: var(--white);
+      padding: 0.9rem 1rem;
+      border-radius: 1rem;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #6b7280;
+      margin-bottom: 0.3rem;
+    }
+
+    .metric-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #020617;
+    }
+
+    .metric-desc {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-top: 0.2rem;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1rem;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+      transition: var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(0, 152, 216, 0.12), transparent 55%);
+      opacity: 0;
+      transition: var(--transition-fast);
+      pointer-events: none;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+      border-color: rgba(0, 152, 216, 0.5);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e0f2fe;
+      color: var(--primary-dark);
+      margin-bottom: 0.7rem;
+      font-size: 1.1rem;
+    }
+
+    .service-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #020617;
+    }
+
+    .service-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .service-tag {
+      font-size: 0.75rem;
+      color: var(--primary-dark);
+      font-weight: 500;
+    }
+
+    /* CTA TECHNICIAN */
+    .cta-tech {
+      background: linear-gradient(135deg, #0f172a, #020617);
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.5rem;
+      color: #e5e7eb;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: 1.3rem;
+      align-items: center;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.8);
+    }
+
+    .cta-tech h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .cta-tech p {
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    .cta-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #93c5fd;
+      margin-bottom: 0.4rem;
+    }
+
+    .cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.22rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      font-size: 0.75rem;
+      color: #dbeafe;
+      margin-top: 0.45rem;
+    }
+
+    .cta-tech-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.55rem;
+      font-size: 0.8rem;
+    }
+
+    .cta-tech-actions span {
+      color: #9ca3af;
+    }
+
+    /* BLOG SECTION */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    .blog-card {
+      background: var(--white);
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: var(--transition-fast);
+    }
+
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+      border-color: rgba(0, 152, 216, 0.5);
+    }
+
+    .blog-thumb {
+      height: 120px;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    }
+
+    .blog-content {
+      padding: 0.9rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    .blog-meta {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #6b7280;
+    }
+
+    .blog-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #020617;
+    }
+
+    .blog-excerpt {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      flex-grow: 1;
+    }
+
+    .blog-link {
+      font-size: 0.8rem;
+      color: var(--primary-dark);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 0.3rem;
+    }
+
+    /* CONTACT STRIP */
+    .contact-strip {
+      margin-top: 2.2rem;
+      background: #0f172a;
+      border-radius: 1.4rem;
+      padding: 1.2rem 1.1rem;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    .contact-strip h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-strip p {
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    .contact-strip-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #020617;
+      color: #9ca3af;
+      margin-top: 2.8rem;
+      padding: 2.5rem 0 1.6rem;
+      border-top: 1px solid #111827;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.86rem;
+      color: #9ca3af;
+      max-width: 20rem;
+      margin-top: 0.4rem;
+    }
+
+    .footer-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #e5e7eb;
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links {
+      font-size: 0.86rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .footer-links a {
+      color: #9ca3af;
+      transition: var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #111827;
+      padding-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+    }
+
+    .footer-bottom a {
+      color: #9ca3af;
+    }
+
+    .slider-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    max-width: 400px;
+    z-index: 10;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 1.2rem 1.4rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 151, 216, 0.123);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.062);
+    }
+
+    .slider-text-content {
+      color: #f1f5f9;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* Responsive slider */
+    @media (max-width: 768px) {
+      .slider-text {
+        bottom: 20px;
+        left: 20px;
+        max-width: 280px;
+        padding: 0.9rem 1rem;
+      }
+      .slider-text-content {
+        font-size: 0.85rem;
+      }
+    }
+
+
+    /* RESPONSIVE page */
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-right {++++
+        order: -1;
+      }
+      .metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .blog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .cta-tech {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        padding-top: 2.4rem;
+      }
+      section {
+        padding: 2.2rem 0;
+      }
+      .metrics-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+      .services-grid,
+      .blog-grid,
+      .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .contact-strip {
+        align-items: flex-start;
+      }
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .metrics-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="topbar-left">
+          <div class="topbar-item">
+            <span class="topbar-dot"></span>
+            <span>Soluções completas em TI e Engenharia</span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-item">
+            📞 <span>(21) 97138-1260</span>
+          </div>
+          <div class="topbar-item">
+            ✉️ <span>contato@innovasolucoes.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="#topo" class="logo">
+          <div class="logo-icon">IS</div>
+          <div class="logo-text">
+            <span>Innova Soluções</span>
+            <span></span>
+          </div>
+        </a>
+
+        <div class="nav-links">
+          
+          <a href="portfolio.html">Nosso Portfólio</a>
+          
+        </div>
+
+        <div class="nav-cta">
+          <a
+            href="https://wa.me/5521971381260"
+            target="_blank"
+            class="btn btn-outline"
+          >
+            <span class="btn-icon-circle">☎</span>
+            Fale com um consultor
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  
+
+  <!-- FOOTER -->
+  <footer id="cases">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#topo" class="logo">
+            <div class="logo-icon">IS</div>
+            <div class="logo-text">
+              <span>Innova Soluções</span>
+              <span>
+
+              </span>
+            </div>
+          </a>
+          <p>
+            Projetos, instalação e manutenção em TI e Engenharia.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-title">Serviços</div>
+          <div class="footer-links">
+            <a href="index.html">Cabeamento Estruturado</a>
+            <a href="index.html">Fibra Óptica</a>
+            <a href="index.html">Sistemas de Alarme e Detecção de Incêndio</a>
+            <a href="index.html">Rádio Enlace</a> 
+            <a href="index.html">CFTV</a>
+            <a href="index.html">Sistemas de Controle de Acesso</a>
+            <a href="index.html">Instalações Elétricas</a>
+            <a href="index.html">Projetos e Instalação de Rede de Gás</a>
+
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-title">Empresa</div>
+          <div class="footer-links">
+            <a href="index.html">Quem somos</a>
+            <a href="portfolio.html">Portfólio</a>
+          
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-title">Contato</div>
+          <div class="footer-links">
+            <span>📞 (21) 97138-1260</span>
+            <span>✉️ contato@innovasolucoes.com</span>
+            <a href="https://wa.me/5521971381260" target="_blank">
+              WhatsApp comercial
+            </a>
+            <a
+              href="https://www.instagram.com/innova_solucoes?igsh=MWdwYmpybHJscXE5bA"
+              target="_blank"
+            >
+              Instagram oficial
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 Innova Soluções. Todos os direitos reservados.</span>
+        <span>Desenvolvido por Gautech- Soluções em Informática.</span>
+      </div>
+    </div>
+  </footer>
+
+    <script>
+      
+    </script>
+
+</body>
+</html>
